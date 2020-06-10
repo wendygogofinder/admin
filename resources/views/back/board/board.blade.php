@@ -1,0 +1,107 @@
+@extends('layouts.master')
+@section('content')
+  <!-- content -->
+  <div class="container-fluid content-top-gap">
+
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb my-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">首頁</a></li>
+        <li class="breadcrumb-item active" aria-current="page">留言板管理</li>
+      </ol>
+    </nav>
+    <!-- //breadcrumbs -->
+
+    <!-- card heading -->
+    <div class="cards__heading">
+      <h3>留言板管理/Content Blocks &emsp;<a href="board_add" class="btn btn-style btn-info mr-2"> 新增留言</a></h3> 
+    </div>
+    <!-- //card heading -->
+
+    <!-- content block style 2-->
+    @foreach($board as $show)
+    <div class="card card_border p-lg-5 p-3 mb-4 ">
+      <div class="card-body py-3 p-0">
+        <div class="row">
+          <div class="col-lg-3 pr-lg-4 text-center">
+          <img src="assets/images/face/{{$show['board_pic']}}" alt="" class=" rounded" /><br><br>
+            <h5 >wendy</h5><br>
+            {{-- 刪除 --}}
+              <div class="card-body">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger btn-style" data-toggle="modal"
+                  data-target="#exampleModal">
+                  刪除
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{$show['board_name']}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        您確定要刪除嗎?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success">確定</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-7 align-self pl-lg-4 mt-lg-0 mt-4 test-center">
+          <div class=" mb-lg-4 text-right"><h5 >留言時間:{{$show['created_at']}}</h5></div>
+            <p class="mb-3"><textarea name="board" cols="120" rows="5" readonly>{{$show['board_content']}}</textarea></p>
+            <h5 class=" mb-lg-4">管理員回覆:</h5>
+            <form action="board_edit" method="post">
+              @csrf
+              @foreach($board_r[$show['id']] as $show_r)
+                <textarea name="board_content" cols="120" rows="5">{{$show_r['board_content']}}</textarea><br>
+              @endforeach
+              <a href="board_R/{{$show['id']}}" class="btn btn-style btn-primary mr-2"> 回覆留言</a>
+            <input type="hidden" name="id" value="{{$show_r['board_content']}}">
+              <input type="submit"class="btn btn-style border-btn" value="修改留言">
+                  {{-- 刪除 --}}
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger btn-style" data-toggle="modal"
+                  data-target="#exampleModal">
+                  刪除
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{$show['board_name']}}留言</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        您確定要刪除嗎?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success">確定</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endforeach
+    <!-- //content block style 2-->
+  </div>
+  <!-- //content -->
+@endsection
