@@ -29,6 +29,7 @@ class BoardController extends Controller
                     'board_email'=>$request->board_email,
                     'board_content'=>$request->board_content,
                     'board_r_id'=>$request->board_r_id,
+                    'board_date'=>$request->board_date,
                     'board_ip'=>0
 
                 ]);
@@ -40,19 +41,33 @@ class BoardController extends Controller
                'board_pic'=>$request->board_pic,
                'board_email'=>$request->board_email,
                'board_content'=>$request->board_content,
+               'board_date'=>$request->board_date,
                'board_ip'=>$request->board_ip
            ]);
        }
         return redirect('board');
     }
     public function edit(Request $request){
-        $board_content=$request->board_content_r;
         foreach($request->board_r_id as $k=>$id){
             $board_r=Board::find($id);
+            $board_content=$request->board_content;
             $board_r->board_content=$board_content[$k];
             $board_r->save();
         }
+        return back();
 
+    }
+    public function delete($id,$board){
+         if($board=="board"){
+            $board=Board::find($id);
+            $board->delete();
+            $board_R=Board::where('board_r_id',$id);
+            $board_R->delete();
+            return back();
+        }
+        $board=Board::find($id);
+        $board->delete();
+        return back();
     }
 
 }

@@ -11,8 +11,15 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="../assets/css/style-starter.css">
 
+  <!-- dataTables --> 
+  {{-- <link rel="stylesheet" href="../assets/css/bootstrap.min.css"> --}}
+  <link rel="stylesheet" href="../assets/css/dataTables.bootstrap4.min.css">
+
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
+  <!--郵遞區號 -->
+  <script src="../assets/js/address.js"></script>
+
   <!-- fontawesome -->
   <script src="https://kit.fontawesome.com/28c735465f.js" crossorigin="anonymous"></script>
 </head>
@@ -110,7 +117,23 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../assets/js/bootstrap.min.js"></script>
-
+<script src="../assets/js/jquery.dataTables.min.js"></script>
+<script src="../assets/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  //  匯入中文標示
+  $("#admin").DataTable({
+    language:{
+      url:'../assets/datatables-chinese.json'
+    },
+    columnDefs:[
+      {
+        targets:3,
+        orderable:false,
+        searchable:false
+      }
+    ]
+  })
+  </script>
 </body>
 
 </html>

@@ -34,6 +34,7 @@ Route::get('pricing',function(){
 Route::get('/', function () {
     return view('index');
 });
+// board 留言板
 Route::get('board','BoardController@show');
 Route::get('board_add', function () {
     return view('back.board.board_add');
@@ -45,3 +46,10 @@ Route::get('board_R',function(){
 });
 Route::post('board_R_Add','BoardController@add');
 Route::post('board_edit','BoardController@edit');
+Route::get('board_delete/{id}/{board}','BoardController@delete');
+//admin 會員管理
+Route::get('admin','AdminController@show');
+Route::get('admin_add', function () {
+    return view('back.admin.admin_add');
+});
+Route::post('admin_add','AdminController@add');

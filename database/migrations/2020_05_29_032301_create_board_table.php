@@ -22,6 +22,7 @@ class CreateBoardTable extends Migration
             $table->string('board_content');
             $table->string('board_r_id')->default(0);
             $table->string('board_ip');
+            $table->text('board_date');
             $table->timestamps();
         });
     }

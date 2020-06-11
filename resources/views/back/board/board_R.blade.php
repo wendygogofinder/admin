@@ -33,6 +33,7 @@
               <p class="mb-3"><textarea name="board" cols="120" rows="5" readonly>{{$board['board_content']}}</textarea></p>
               <h5 class=" mb-lg-4">管理員回覆:</h5>
                 <textarea cols="120" rows="5" name="board_content"></textarea><br>
+                  <input type="hidden" name="board_date" value="{{date("Y-m-d H:i:s")}}">
                   <input type="hidden" name="board_email" value="{{$board['board_email']}}">
                   <input type="hidden" name="board_title" value="{{$board['board_title']}}">
                   <input type="hidden" name="board_pic" value="{{$board['board_pic']}}">

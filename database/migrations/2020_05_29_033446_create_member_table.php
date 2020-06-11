@@ -15,19 +15,20 @@ class CreateMemberTable extends Migration
     {
         Schema::create('member', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('level');
-            $table->string('uname');
+            $table->text('uname');
             $table->string('username');
             $table->string('password');
             $table->string('email');
             $table->string('sex');
-            $table->string('orderPaper');
+            $table->string('orderPaper')->default('0');
             $table->string('birthday');
             $table->string('phone');
             $table->string('Area');
             $table->string('cityarea');
             $table->string('cuszip');
             $table->string('cusadr');
+            $table->text('date');
+            $table->string('sh')->default('1');
             $table->timestamps();
 
         });

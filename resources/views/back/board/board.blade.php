@@ -14,7 +14,7 @@
 
     <!-- card heading -->
     <div class="cards__heading">
-      <h3>留言板管理/Content Blocks &emsp;<a href="board_add" class="btn btn-style btn-info mr-2"> 新增留言</a></h3> 
+      <h3>留言板管理/Content Blocks &emsp;<a href="board_add" class="btn btn-info mr-2"> 新增留言</a></h3> 
     </div>
     <!-- //card heading -->
 
@@ -29,12 +29,12 @@
             {{-- 刪除 --}}
               <div class="card-body">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger btn-style" data-toggle="modal"
-                  data-target="#exampleModal">
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                  data-target="#board">
                   刪除
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                <div class="modal fade" id="board" tabindex="-1" role="dialog"
                   aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -48,7 +48,7 @@
                         您確定要刪除嗎?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-success">確定</button>
+                      <button type="button" class="btn btn-success" onclick="location.href='board_delete/{{$show['id']}}/board'">確定</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
                       </div>
                     </div>
@@ -57,25 +57,33 @@
               </div>
           </div>
           <div class="col-lg-7 align-self pl-lg-4 mt-lg-0 mt-4 test-center">
-          <div class=" mb-lg-4 text-right"><h5 >留言時間:{{$show['created_at']}}</h5></div>
+          <div class=" mb-lg-4 text-right"><h5 >留言時間:{{$show['board_date']}}</h5></div>
             <p class="mb-3"><textarea name="board" cols="120" rows="5" readonly>{{$show['board_content']}}</textarea></p>
+          <div class="mb-lg-3">
+            <a href="mailto:{{$show['board_email']}}"><img src="../images/board_email.gif" width="40" height="19" border="0" /></a>
+            IP位置：{{$show['board_ip']}}
+          </div>
+          <div class="mb-lg-2">
+           <hr class="bg-dark">
+          </div>
+              </tr>
+            </table>
             <h5 class=" mb-lg-4">管理員回覆:</h5>
             <form action="board_edit" method="post">
               @csrf
               @foreach($board_r[$show['id']] as $show_r)
-                <textarea name="board_content" cols="120" rows="5">{{$show_r['board_content']}}</textarea><br>
-              @endforeach
-              <a href="board_R/{{$show['id']}}" class="btn btn-style btn-primary mr-2"> 回覆留言</a>
-            <input type="hidden" name="id" value="{{$show_r['board_content']}}">
-              <input type="submit"class="btn btn-style border-btn" value="修改留言">
+                <span class="text-right"><h5 >留言時間:{{$show_r['board_date']}}</h5></span>
+                <textarea name="board_content[]" cols="120" rows="3" required>{{$show_r['board_content']}}</textarea>
+                <input type="hidden" name="board_r_id[]" value="{{$show_r['id']}}">
                   {{-- 刪除 --}}
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger btn-style" data-toggle="modal"
-                  data-target="#exampleModal">
+                <div>
+                <button type="button" class="btn btn-danger align-items-start" data-toggle="modal"
+                  data-target="#board_R">
                   刪除
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                <div class="modal fade" id="board_R" tabindex="-1" role="dialog"
                   aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -89,18 +97,29 @@
                         您確定要刪除嗎?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-success">確定</button>
+                        <button type="button" class="btn btn-success" onclick="location.href='board_delete/{{$show_r['id']}}/1'">確定</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+                @endforeach<br>
+              <a href="board_R/{{$show['id']}}" class="btn btn-primary mr-2"> 回覆留言</a>
+              <input type="submit"class="btn border-btn" value="修改留言">
             </form>
           </div>
         </div>
       </div>
     </div>
     @endforeach
+    @if(empty($show['id']))
+    <div class="row cards__heading text-center">
+      <div class="col-lg-12 pr-lg-4 ">
+        <h4 class="text-danger "><strong> 目前資料庫中沒有任何資料!</strong></h4>
+      </div>
+    </div>
+    @endif
     <!-- //content block style 2-->
   </div>
   <!-- //content -->

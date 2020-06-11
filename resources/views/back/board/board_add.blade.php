@@ -85,6 +85,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-10">
+                            <input type="hidden" name="board_date" value="{{date("Y-m-d H:i:s")}}">
                                 <input name="board_ip" type="hidden" id="board_ip" value="
                                     @if(!empty($_SERVER['HTTP_CLIENT_IP']))
                                     {{$myip = $_SERVER['HTTP_CLIENT_IP']}}
