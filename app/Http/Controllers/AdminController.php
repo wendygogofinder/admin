@@ -52,4 +52,57 @@ class AdminController extends Controller
                 return redirect('admin');
         }
     }
+    public function showone(Request $request,$id){
+
+        $admin=Admin::find($id);
+        $name=$request->name;
+        return view('back.admin.admin_edit',['admin'=>$admin,'name'=>$name]);
+    }
+    public function edit(Request $request){
+        $orderPaper=($request->orderPaper=="")?"N":"Y";
+        if(!empty($request->Newpassword)){
+            $Newpassword=hash("sha256",$request->Newpassword);
+            $admin=Admin::find($request->id);
+                $admin->uname=$request->uname;
+                $admin->password=$Newpassword;
+                $admin->email=$request->email;
+                $admin->sex=$request->sex;
+                $admin->orderPaper=$orderPaper;
+                $admin->birthday=$request->birthday;
+                $admin->phone=$request->phone;
+                $admin->Area=$request->Area;
+                $admin->cityarea=$request->cityarea;
+                $admin->cuszip=$request->cuszip;
+                $admin->cusadr=$request->cusadr;
+                $admin->save();
+                return redirect('admin');
+        }else{
+            $admin=Admin::find($request->id);
+            $admin->uname=$request->uname;
+            $admin->email=$request->email;
+            $admin->sex=$request->sex;
+            $admin->orderPaper=$orderPaper;
+            $admin->birthday=$request->birthday;
+            $admin->phone=$request->phone;
+            $admin->Area=$request->Area;
+            $admin->cityarea=$request->cityarea;
+            $admin->cuszip=$request->cuszip;
+            $admin->cusadr=$request->cusadr;
+            
+            $admin->save();
+            return redirect('admin');
+        }
+    }
+    public function delete($id){
+
+        $admin=Admin::find($id);
+        $admin->delete();
+        return redirect('admin');
+    }
+    public function sh($id){
+        $sh=Admin::find($id);
+        $sh->sh=($sh->sh+1)%2;
+        $sh->save();
+        return back();
+    }
 }

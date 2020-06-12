@@ -32,25 +32,24 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($admin as $k=>$a)
           <tr>
-            <th>{{$k+1}}</th>
-          <td> <a href="admin_sh/{{$a['id']}}">@if($a['sh']=='1')啟用@else 停用@endif</a></td>
+            <th></th>
+            <td>@if($a['sh']=='1') <a href="admin_sh/{id}">啟用</a>  @else <a href="">停用</a>  @endif</td>
             <td></td>
-            <td>{{$a['uname']}}&emsp;({{$a['username']}})</td>
-            <td>{{$a['email']}}</td>
-            <td>{{$a['date']}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>
               <button type="button" class="btn-sm btn-danger" data-toggle="modal"
               data-target="#admin_button"><i class="far fa-trash-alt"></i></button>
-              <button class="btn-sm btn-primary" onclick="location.href='admin_edit/{{$a['id']}}?name={{$a['uname']}}'"><i class="fas fa-edit"></i></button>
+              <button class="btn-sm btn-primary" onclick="location.href='admin_edit/'"><i class="fas fa-edit"></i></button>
                   <!-- Modal -->
                   <div class="modal fade" id="admin_button" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle"><span class="text-danger">{{$a['uname']}}</span>會員資料您確定你要刪除? </h5>
+                          <h5 class="modal-title" id="exampleModalLongTitle"><span class="text-danger"></span>會員資料您確定你要刪除? </h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -59,7 +58,7 @@
                           刪除後無法復原
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-success" onclick="location.href='admin_delete/{{$a['id']}}'">確定</button>
+                          <button type="button" class="btn btn-success" onclick="location.href='admin_delete/'">確定</button>
                           <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
                         </div>
                       </div>
@@ -67,7 +66,6 @@
                   </div>
             </td>
           </tr>
-          @endforeach
         </tbody>
       </table>
     </div>

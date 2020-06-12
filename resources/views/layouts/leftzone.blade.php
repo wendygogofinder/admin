@@ -40,12 +40,18 @@
         <li><a href="board"><i class="fas fa-chalkboard-teacher"></i><span>留言板管理</span></a></li>
         </li>
         <li class="menu-list">
+          <a href="#"><i class="fas fa-file-image"></i></i>
+            <span>廣告區管理</span></a>
+          <ul class="sub-menu-list">
+            <li><a href="banner">廣告區圖片</a> </li>
+            <li><a href="text">廣告區文字</a> </li>
+          </ul>
+        </li>
+        <li class="menu-list">
           <a href="#"><i class="fa fa-cogs"></i>
             <span>網頁相關設定</span></a>
           <ul class="sub-menu-list">
-            <li><a href="banner">廣告區管理</a> </li>
             <li><a href="news">新聞活動管理</a> </li>
-            <li><a href="film">影片區管理</a> </li>
             <li><a href="foot">頁尾版權區</a></li>
           </ul>
         </li>

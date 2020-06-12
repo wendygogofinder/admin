@@ -53,3 +53,9 @@ Route::get('admin_add', function () {
     return view('back.admin.admin_add');
 });
 Route::post('admin_add','AdminController@add');
+Route::get('admin_edit/{id}','AdminController@showone');
+Route::post('admin_edit','AdminController@edit');
+Route::get('admin_delete/{id}','AdminController@delete');
+Route::get('admin_sh/{id}','AdminController@sh');
+//banner&text 廣告區管理
+Route::get('banner','BannerController@show');

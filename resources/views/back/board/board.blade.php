@@ -14,7 +14,7 @@
 
     <!-- card heading -->
     <div class="cards__heading">
-      <h3>留言板管理/Content Blocks &emsp;<a href="board_add" class="btn btn-info mr-2"> 新增留言</a></h3> 
+      <h4>留言板管理&emsp;<small class="text-muted">Content Blocks</small><a href="board_add" class="btn btn-info mr-2 title_float"><i class="fas fa-plus"></i>&nbsp;新增留言</a> </h4>
     </div>
     <!-- //card heading -->
 
@@ -26,7 +26,7 @@
           <div class="col-lg-3 pr-lg-4 text-center">
           <img src="assets/images/face/{{$show['board_pic']}}" alt="" class=" rounded" /><br><br>
             <h5 >wendy</h5><br>
-            {{-- 刪除 --}}
+              {{-- 刪除 --}}
               <div class="card-body">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-danger" data-toggle="modal"

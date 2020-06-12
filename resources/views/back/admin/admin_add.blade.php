@@ -184,20 +184,11 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
-                        <input type="hidden" name="board_date" value="{{date("Y-m-d H:i:s")}}">
-                            <input name="board_ip" type="hidden" id="board_ip" value="
-                                @if(!empty($_SERVER['HTTP_CLIENT_IP']))
-                                {{$myip = $_SERVER['HTTP_CLIENT_IP']}}
-                                @elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-                                  {{$myip = $_SERVER['HTTP_X_FORWARDED_FOR']}}
-                                @else
-                                  {{$myip= $_SERVER['REMOTE_ADDR']}}
-                                @endif" />
-                                <input type="hidden" name="date" value="{{date("Y-m_d H:i:s")}}">
-                            <button type="submit" class="btn btn-primary btn-style">送出留言</button>
-                            <button type="reset" class="btn btn-primary btn-style">重置</button>
+                    <div class="form-group row title_float">
+                        <div class="col-sm-12 ">
+                            <input type="hidden" name="date" value="{{date("Y-m-d H:i:s")}}">
+                            <button type="submit" class="btn btn-primary btn-style ">送出留言</button>
+                            <input type="button" class="btn btn-primary btn-style " onclick="location.href='admin'" value="返回">
                         </div>
                     </div>
                 </form>
